@@ -43,9 +43,7 @@ class VendingMachine
     @slot_money = 0
   end
 
-  def juice_stock
-    @juice_stock
-  end
+  
 
   def purchase
   end
