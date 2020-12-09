@@ -1,8 +1,7 @@
 # このコードをコピペしてrubyファイルに貼り付け、そのファイルをirbでrequireして実行しましょう。
-# 例
-# irb
+# work7ディレクトリにて、irb
 # require './vending-machine.rb'
-# （↑のパスは、自動販売機ファイルが入っているパスを指定する）
+
 # 初期設定（自動販売機インスタンスを作成して、vmという変数に代入する）
 # vm = VendingMachine.new
 # 作成した自動販売機に100円を入れる
@@ -48,7 +47,7 @@ class VendingMachine
     @juice_stock
   end
 
-  def buy
+  def purchase
   end
 
 end
