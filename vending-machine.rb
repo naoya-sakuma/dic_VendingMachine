@@ -71,7 +71,7 @@ class VendingMachine
           return_money
         end
     else
-      puts 'お金がたりません'
+      puts '購入できません'
       return_money
     end
   end
