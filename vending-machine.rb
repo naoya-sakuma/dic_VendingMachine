@@ -19,7 +19,11 @@ class VendingMachine
   def initialize
     # 最初の自動販売機に入っている金額は0円
     @slot_money = 0
-    @juice_stock = {name: 'coke', price: '120', stock: 5}
+    @juice_stock = {name: 'coke', price: 120, stocks: 5}
+    @coke = {name: 'coke', price: 120, stocks: 5}
+    @redbull = {name: 'redbull', price: 200, stocks: 5}
+    @water = {name: 'water', price: 100, stocks: 5}
+    @sales = 0
   end
   # 投入金額の総計を取得できる。
   def current_slot_money
@@ -43,9 +47,50 @@ class VendingMachine
     @slot_money = 0
   end
 
-  
-
-  def purchase
+  def purchace
+    if @slot_money >= @juice_stock[:price] && @juice_stock[:stocks] > 1
+        puts '購入しますか？'
+        puts '1：購入する'
+        puts '2：購入しない'
+        puts '1か2を入力してください'
+        users_action = gets.to_i
+          if gets.to_i == 1
+            @juice_stock = @juice_stock[:stocks] - 1
+            @slot_money = @slot_money - @juice_stock[:price]
+            @sales = @sales + @juice_stock[:price]
+            puts 'コーラです'
+            return_money
+          else gets.to_i == 2
+            return_money
+          end
+    else
+      puts 'お金がたりません'
+      return_money
+    end
   end
+
+  def check_sales
+    @sales
+  end
+
+  def add_juice_to_vending_machine
+    puts 'どのジュースを補充しますか？'
+    puts '1：コーラ'
+    puts '2：レッドブル'
+    puts '3：水'
+    select_juice_to_stock = gets.to_i
+      if select_juice_to_stock  == 1
+        @coke = @coke[:stocks] + select_juice_to_stock
+      elsif select_juice_to_stock  == 2
+        @redbull = @redbull[:stocks] + select_juice_to_stock
+      elsif select_juice_to_stock  == 3
+        @water = @water[:stocks] + select_juice_to_stock
+      else
+        puts '何も補充していません'
+      end
+  end
+
+
+
 
 end
