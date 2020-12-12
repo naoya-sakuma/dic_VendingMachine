@@ -4,7 +4,7 @@
 # vm = VendingMachine.new
 
 # 作成した自動販売機に100円を入れる
-# vm.slot_money (100)
+# vm.slot_money (1000)
 # 作成した自動販売機に入れたお金がいくらかを確認する（表示する）
 # vm.current_slot_money
 # 作成した自動販売機に入れたお金を返してもらう
@@ -56,20 +56,20 @@ class VendingMachine
   #ステップ3、ジュースの購入Ver.1（挙動未確認）
   def purchace
     if @slot_money >= @juice_stock[:price] && @juice_stock[:stocks] > 1
-        puts '購入しますか？'
-        puts '1：購入する'
-        puts '2：購入しない'
-        puts '1か2を入力してください'
-        users_action = gets.to_i
-          if gets.to_i == 1
-            @juice_stock = @juice_stock[:stocks] - 1
-            @slot_money = @slot_money - @juice_stock[:price]
-            @sales = @sales + @juice_stock[:price]
-            puts 'コーラです'
-            return_money
-          else gets.to_i == 2
-            return_money
-          end
+      puts '購入しますか？'
+      puts '1：購入する'
+      puts '2：購入しない'
+      puts '1か2を入力してください'
+      users_action = gets.to_i
+        if gets.to_i == 1
+          @juice_stock = @juice_stock[:stocks] - 1
+          @slot_money = @slot_money - @juice_stock[:price]
+          @sales = @sales + @juice_stock[:price]
+          puts 'コーラです'
+          return_money
+        else gets.to_i == 2
+          return_money
+        end
     else
       puts 'お金がたりません'
       return_money
@@ -120,7 +120,25 @@ class VendingMachine
   end
 
   #ステップ4、ジュースの在庫を管理（挙動確認済み）
-  def add_juice_to_vending_machine(juice_name)
+  def add_juice_to_vending_machine
+    puts 'どのジュースを補充しますか？'
+    puts '1：コーラ'
+    puts '2：レッドブル'
+    puts '3：水'
+    select_juice_to_stock = gets.to_i
+      if select_juice_to_stock  == 1
+        @coke = @coke[:stocks] + select_juice_to_stock
+      elsif select_juice_to_stock  == 2
+        @redbull = @redbull[:stocks] + select_juice_to_stock
+      elsif select_juice_to_stock  == 3
+        @water = @water[:stocks] + select_juice_to_stock
+      else
+        puts '何も補充していません'
+      end
+  end
+
+  #ステップ4、ジュースの在庫を管理Ver2(エラー)
+  def add_juice_to_vending_machine2(juice_name)
     if juice_name  == coke
       @coke = @coke[:stocks] + 5
     elsif juice_name  == redbull
