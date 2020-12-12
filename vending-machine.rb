@@ -1,15 +1,21 @@
-# このコードをコピペしてrubyファイルに貼り付け、そのファイルをirbでrequireして実行しましょう。
+#　初期設定
 # work7ディレクトリにて、irb
 # require './vending-machine.rb'
-
-# 初期設定（自動販売機インスタンスを作成して、vmという変数に代入する）
 # vm = VendingMachine.new
+
 # 作成した自動販売機に100円を入れる
 # vm.slot_money (100)
 # 作成した自動販売機に入れたお金がいくらかを確認する（表示する）
 # vm.current_slot_money
 # 作成した自動販売機に入れたお金を返してもらう
 # vm.return_money
+# ジュースを購入する
+# vm.purchace
+# 現在の売上を確認する
+# vm.check_sales
+# 自動販売機にジュースを追加する
+# add_juice_to_vending_machine
+
 class VendingMachine
   # ステップ０　お金の投入と払い戻しの例コード
   # ステップ１　扱えないお金の例コード
@@ -47,6 +53,7 @@ class VendingMachine
     @slot_money = 0
   end
 
+　#ステップ3、ジュースの購入（挙動未確認）
   def purchace
     if @slot_money >= @juice_stock[:price] && @juice_stock[:stocks] > 1
         puts '購入しますか？'
@@ -69,10 +76,12 @@ class VendingMachine
     end
   end
 
+  #ステップ３、現在の売上を取得（挙動確認済み）
   def check_sales
     @sales
   end
 
+  #ステップ4、ジュースの在庫を管理（挙動確認済み）
   def add_juice_to_vending_machine
     puts 'どのジュースを補充しますか？'
     puts '1：コーラ'
@@ -80,17 +89,18 @@ class VendingMachine
     puts '3：水'
     select_juice_to_stock = gets.to_i
       if select_juice_to_stock  == 1
-        @coke = @coke[:stocks] + select_juice_to_stock
+        @coke = @coke[:stocks] + 5
       elsif select_juice_to_stock  == 2
-        @redbull = @redbull[:stocks] + select_juice_to_stock
+        @redbull = @redbull[:stocks] + 5
       elsif select_juice_to_stock  == 3
-        @water = @water[:stocks] + select_juice_to_stock
+        @water = @water[:stocks] + 5
       else
         puts '何も補充していません'
       end
   end
 
-
-
-
+  #ステップ4、購入可能なジュースを表示
+  def buyable_juice_lists
+    now_on_sale_juice = []
+  end
 end
