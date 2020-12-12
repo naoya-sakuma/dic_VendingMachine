@@ -86,7 +86,7 @@ class VendingMachine
         puts 'コーラです'
         return_money
       else
-        puts 'お金がたりません'
+        puts '購入できません'
         return_money
       end
     elsif juice_name == 'redbull'
@@ -97,7 +97,7 @@ class VendingMachine
         puts 'レッドブルです'
         return_money
       else
-        puts 'お金がたりません'
+        puts '購入できません'
         return_money
       end
     elsif juice_name == 'water'
@@ -108,9 +108,11 @@ class VendingMachine
         puts 'レッドブルです'
         return_money
       else
-        puts 'お金がたりません'
+        puts '購入できません'
         return_money
       end
+    else
+      puts 'ジュースはありません'
     end
   end
 
