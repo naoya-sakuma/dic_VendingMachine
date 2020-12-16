@@ -53,28 +53,30 @@ class VendingMachine
     @slot_money = 0
   end
 
-  #ステップ3、ジュースの購入Ver.1（挙動未確認）
-  # def purchace
-  #   if @slot_money >= @juice_stock[:price] && @juice_stock[:stocks] > 1
-  #     puts '購入しますか？'
-  #     puts '1：購入する'
-  #     puts '2：購入しない'
-  #     puts '1か2を入力してください'
-  #     users_action = gets.to_i
-  #       if gets.to_i == 1
-  #         @juice_stock = @juice_stock[:stocks] - 1
-  #         @slot_money = @slot_money - @juice_stock[:price]
-  #         @sales = @sales + @juice_stock[:price]
-  #         puts 'コーラです'
-  #         return_money
-  #       else gets.to_i == 2
-  #         return_money
-  #       end
-  #   else
-  #     puts '購入できません'
-  #     return_money
-  #   end
-  # end
+  ステップ3、ジュースの購入Ver.1（挙動未確認）
+  def purchase
+    if @slot_money >= @juice_stock[:price] && @juice_stock[:stocks] > 1
+      puts '購入しますか？'
+      puts '1：購入する'
+      puts '2：購入しない'
+      puts '1か2を入力してください'
+      users_action = gets.to_i
+        if users_action == 1
+          @juice_stock[:stocks] -= 1
+          @slot_money = @slot_money - @juice_stock[:price]
+          @sales = @sales + @juice_stock[:price]
+          puts 'コーラです'
+          return_money
+        elsif users_action == 2
+          return_money
+        else
+          puts '無効な入力です'
+        end
+    else
+      puts '購入できません'
+      return_money
+    end
+  end
 
   #ステップ3、ジュースの購入Ver.1（挙動未確認）
 def show_stock
