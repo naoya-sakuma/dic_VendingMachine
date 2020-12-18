@@ -16,9 +16,9 @@ class VendingMachine
   MONEY = [10, 50, 100, 500, 1000].freeze
   def initialize
     @slot_money = 0
-    @coke = {name: 'coke', price: 120, stocks: 5}
-    @redbull = {name: 'redbull', price: 200, stocks: 5}
-    @water = {name: 'water', price: 100, stocks: 5}
+    @coke = {name: 'コーラ', price: 120, stocks: 5}
+    @redbull = {name: 'レッドブル', price: 200, stocks: 5}
+    @water = {name: '水', price: 100, stocks: 5}
     @sales = 1000
   end
 
@@ -37,11 +37,9 @@ class VendingMachine
   end
 
   def show_stock # JuiceStockManager
-    #コーラは1本です、と表示したい
-    p @coke[:stocks]
-    p @redbull[:stocks]
-    p @water[:stocks]
-    # p "コーラは#{@coke[:stocks]です"
+    p "コーラは#{@coke[:stocks]}本です"
+    p "レッドブルは#{@redbull[:stocks]}本です"
+    p "水は#{@water[:stocks]}本です"
   end
 
   def purchase # Other
@@ -109,12 +107,37 @@ class VendingMachine
       end
   end
 
-  #ステップ4、購入可能なジュースを表示（作成中）
-  def buyable_juice_lists
+  def buyable_juice_list
     juice_lists = [@coke, @redbull, @water]
+    @juice_stocks_sum = 0
     juice_lists.each do |list|
-    if @slot_money >= list.price && list.stocks > 1
-      puts list.name
+      if @slot_money >= list[:price] && list[:stocks] >= 1
+      #if list[:stocks] >= 1
+        @juice_stocks_sum = @juice_stocks_sum + list[:stocks]
+      end
+    end
+    if @juice_stocks_sum == 0
+      puts "買えるものがありません"
+    else
+      juice_lists.each do |list|
+        if @slot_money >= list[:price] && list[:stocks] >= 1
+        #if @slot_money >= list[:price]
+          puts list[:name]
+        end
+      end
     end
   end
 end
+
+
+#juice = @coke[:stocks] + @redbull[:stocks] + @water[:stocks]
+#if juice == 0
+    # if @slot_money < 100
+    #   puts "お金がたりません"
+    # else
+    #   juice_lists.each do |list|
+    #     if @slot_money >= list[:price] && list[:stocks] >= 1
+    #       puts list[:name]
+    #     end
+    #   end
+    # end
