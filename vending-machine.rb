@@ -1,91 +1,98 @@
 #　初期設定
 # work7ディレクトリにて、irb
 # require './vending-machine.rb'
+# load './vending-machine.rb'
 # vm = VendingMachine.new
 
-# 作成した自動販売機に100円を入れる
+# メソッド
 # vm.slot_money (1000)
-# 作成した自動販売機に入れたお金がいくらかを確認する（表示する）
 # vm.current_slot_money
-# 作成した自動販売機に入れたお金を返してもらう
 # vm.return_money
-# ジュースを購入する
 # vm.purchace
-# 現在の売上を確認する
 # vm.check_sales
-# 自動販売機にジュースを追加する
 # add_juice_to_vending_machine
 
 class VendingMachine
   MONEY = [10, 50, 100, 500, 1000].freeze
   def initialize
     @slot_money = 0
-    @juice_stock = {name: 'coke', price: 120, stocks: 5}
     @coke = {name: 'coke', price: 120, stocks: 5}
     @redbull = {name: 'redbull', price: 200, stocks: 5}
     @water = {name: 'water', price: 100, stocks: 5}
-    @sales = 0
+    @sales = 1000
   end
 
-  def current_slot_money
+  def current_slot_money # MoneyManager
     @slot_money
   end
 
-  def slot_money(money)
+  def slot_money(money) # MoneyManager
     return false unless MONEY.include?(money)
     @slot_money += money
   end
 
-  def return_money
+  def return_money # MoneyManager
     puts @slot_money
     @slot_money = 0
   end
 
-  def show_stock
-    p @coke
-    p @redbull
-    p @water
+  def show_stock # JuiceStockManager
+    #コーラは1本です、と表示したい
+    p @coke[:stocks]
+    p @redbull[:stocks]
+    p @water[:stocks]
+    # p "コーラは#{@coke[:stocks]です"
   end
 
-  def purchase
-    if @slot_money >= @juice_stock[:price] && @juice_stock[:stocks] > 1
-        puts '購入しますか？'
-        puts '1：コーラを購入する'
-        puts '2：レッドブルを購入する'
-        puts '3：水を購入する'
-        users_action = gets.to_i
-          if users_action == 1
+  def purchase # Other
+    puts '購入しますか？'
+    puts '1：コーラを購入する'
+    puts '2：レッドブルを購入する'
+    puts '3：水を購入する'
+      users_action = gets.to_i
+        if users_action == 1
+          if @slot_money >= @coke[:price] && @coke[:stocks] > 1
             @coke[:stocks] -= 1
             @slot_money = @slot_money - @coke[:price]
             @sales = @sales + @coke[:price]
             puts 'コーラです'
             return_money
-          elsif users_action == 2
+          else
+            puts '購入できません'
+            return_money
+          end
+        elsif users_action == 2
+          if @slot_money >= @redbull[:price] && @redbull[:stocks] > 1
             @redbull[:stocks] -= 1
             @slot_money = @slot_money - @redbull[:price]
             @sales = @sales + @redbull[:price]
             puts 'レッドブルです'
             return_money
-          elsif users_action == 3
+          else
+            puts '購入できません'
+            return_money
+          end
+        elsif users_action == 3
+          if @slot_money >= @water[:price] && @water[:stocks] > 1
             @water[:stocks] -= 1
             @slot_money = @slot_money - @water[:price]
             @sales = @sales + @water[:price]
             puts '水です'
             return_money
           else
-            puts "無効な入力です"
+            puts '購入できません'
+            return_money
           end
-    else
-      puts 'お金がたりません'
-      return_money
-    end
+        else
+          puts "無効な入力です"
+        end
   end
 
-  def check_sales
+  def check_sales #SalesManager
     @sales
   end
 
-  def add_juice_to_vending_machine
+  def add_juice_to_vending_machine # JuiceStockManager
     puts 'どのジュースを補充しますか？'
     puts '1：コーラ'
     puts '2：レッドブル'
@@ -104,6 +111,10 @@ class VendingMachine
 
   #ステップ4、購入可能なジュースを表示（作成中）
   def buyable_juice_lists
-    now_on_sale_juice = []
+    juice_lists = [@coke, @redbull, @water]
+    juice_lists.each do |list|
+    if @slot_money >= list.price && list.stocks > 1
+      puts list.name
+    end
   end
 end
