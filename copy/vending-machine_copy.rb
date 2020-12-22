@@ -1,7 +1,7 @@
 #　初期設定
-# work7ディレクトリにて、irb
-# require './vending-machine.rb'
-# load './vending-machine.rb'
+# copyディレクトリにて、irb
+# require './vending-machine_copy.rb'
+# load './vending-machine_copy.rb'
 # vm = VendingMachine.new
 
 # メソッド
@@ -11,6 +11,7 @@
 # vm.show_stock
 # vm.purchace
 # vm.check_sales
+# vm.return_sales
 # vm.add_juice_to_vending_machine
 # vm.buyable_juice_list
 
@@ -92,7 +93,12 @@ class VendingMachine
     @sales
   end
 
-  def add_stocks # JuiceStockManager
+  def return_sales
+    @sales
+    @sales = 0
+  end
+
+  def add_juice_to_vending_machine # JuiceStockManager
     puts 'どのジュースを補充しますか？'
     puts '1：コーラ'
     puts '2：レッドブル'
