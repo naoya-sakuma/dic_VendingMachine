@@ -59,7 +59,7 @@ class VendingMachine
     puts '2：レッドブル'
     puts '3：水'
     input_number = gets.to_i
-    bought_juice = @juice_list[:product_id].find(input_number)
+    bought_juice = @juice_list.find(:product_id[input_number])
     byebug
     if bought_juice == @coke
       if @slot_money >= @coke[:price] && @coke[:stocks] > 1
@@ -148,16 +148,16 @@ class VendingMachine
   def buyable_juice_list
     juice_lists = [@coke, @redbull, @water]
     @juice_stocks_sum = 0
-    juice_lists.each do |list|
-      if @slot_money >= list[:price] && list[:stocks] >= 1
+    juice_lists.each do |juice|
+      if @slot_money >= juice[:price] && juice[:stocks] >= 1
         @juice_stocks_sum = @juice_stocks_sum + list[:stocks]
       end
     end
     if @juice_stocks_sum == 0
       puts "買えるものがありません"
     else
-      juice_lists.each do |list|
-        if @slot_money >= list[:price] && list[:stocks] >= 1
+      juice_lists.each do |juice|
+        if @slot_money >= juice[:price] && juice[:stocks] >= 1
           puts list[:name]
         end
       end
