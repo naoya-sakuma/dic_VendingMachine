@@ -1,4 +1,4 @@
-class MoneyManager
+module MoneyManager
   def check_sales
     @sales
   end
@@ -9,7 +9,7 @@ class MoneyManager
   end
 end
 
-class StocksManager
+module StocksManager
   def add_stocks
     puts 'どのジュースを補充しますか？'
     puts '1：コーラ'
@@ -34,7 +34,7 @@ class StocksManager
   end
 end
 
-class SalesManager
+module SalesManager
   def slot_money(money)
     return false unless MONEY.include?(money)
     @slot_money += money

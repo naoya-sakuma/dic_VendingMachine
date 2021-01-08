@@ -1,6 +1,6 @@
 #　初期設定
 # original_2020_12_29ディレクトリにて、irb
-# require './vending-machine.rb'
+# require './test-vending-machine.rb'
 # load './vending-machine.rb'
 # vm = VendingMachine.new
 
@@ -15,6 +15,7 @@
 # vm.add_juice_to_vending_machine
 # vm.buyable_juice_list
 require 'byebug'
+require './class.rb'
 
 class VendingMachine
   MONEY = [10, 50, 100, 500, 1000].freeze
@@ -45,13 +46,6 @@ class VendingMachine
     puts @slot_money
     @slot_money = 0
   end
-
-  def show_stock
-    p "コーラは#{@coke[:stocks]}本です"
-    p "レッドブルは#{@redbull[:stocks]}本です"
-    p "水は#{@water[:stocks]}本です"
-  end
-
 
   def new_purchase
     puts '何を購入しますか？'
@@ -123,27 +117,6 @@ class VendingMachine
         # else
         #   puts "無効な入力です"
         # end
-
-  def check_sales
-    @sales
-  end
-
-  def add_stocks
-    puts 'どのジュースを補充しますか？'
-    puts '1：コーラ'
-    puts '2：レッドブル'
-    puts '3：水'
-    select_juice_to_stock = gets.to_i
-      if select_juice_to_stock  == 1
-        @coke[:stocks] += 5
-      elsif select_juice_to_stock  == 2
-        @redbull[:stocks] += 5
-      elsif select_juice_to_stock  == 3
-        @water[:stocks] += 5
-      else
-        puts '何も補充していません'
-      end
-  end
 
   def buyable_juice_list
     juice_lists = [@coke, @redbull, @water]
