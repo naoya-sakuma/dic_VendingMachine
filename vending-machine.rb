@@ -11,7 +11,7 @@
 # vm.show_stock
 # vm.purchace
 # vm.check_sales
-# vm.add_juice_to_vending_machine
+# vm.add_stocks
 # vm.buyable_juice_list
 
 class VendingMachine
@@ -24,27 +24,27 @@ class VendingMachine
     @sales = 1000
   end
 
-  def current_slot_money # MoneyManager
+  def current_slot_money
     @slot_money
   end
 
-  def slot_money(money) # MoneyManager
+  def slot_money(money)
     return false unless MONEY.include?(money)
     @slot_money += money
   end
 
-  def return_money # MoneyManager
+  def return_money
     puts @slot_money
     @slot_money = 0
   end
 
-  def show_stock # JuiceStockManager
+  def show_stock
     p "コーラは#{@coke[:stocks]}本です"
     p "レッドブルは#{@redbull[:stocks]}本です"
     p "水は#{@water[:stocks]}本です"
   end
 
-  def purchase # Other
+  def purchase
     puts '購入しますか？'
     puts '1：コーラを購入する'
     puts '2：レッドブルを購入する'
@@ -88,11 +88,11 @@ class VendingMachine
         end
   end
 
-  def check_sales #SalesManager
+  def check_sales
     @sales
   end
 
-  def add_stocks # JuiceStockManager
+  def add_stocks
     puts 'どのジュースを補充しますか？'
     puts '1：コーラ'
     puts '2：レッドブル'
@@ -128,16 +128,3 @@ class VendingMachine
     end
   end
 end
-
-
-#juice = @coke[:stocks] + @redbull[:stocks] + @water[:stocks]
-#if juice == 0
-    # if @slot_money < 100
-    #   puts "お金がたりません"
-    # else
-    #   juice_lists.each do |list|
-    #     if @slot_money >= list[:price] && list[:stocks] >= 1
-    #       puts list[:name]
-    #     end
-    #   end
-    # end
