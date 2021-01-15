@@ -11,7 +11,7 @@ module StocksManager
     juice_to_stock[:stocks] += adding_number
   end
 
-  def show_stock
+  def check_stocks
     @juice_lists.each do |juice|
       p "#{juice[:name]}の在庫：#{juice[:stocks]}本"
     end

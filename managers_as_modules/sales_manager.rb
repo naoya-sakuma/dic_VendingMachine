@@ -1,10 +1,12 @@
 module SalesManager
+  MONEY = [10, 50, 100, 500, 1000].freeze
+  
   def buyable_juice_list
     @juice_lists.each do |juice|
       if juice[:stocks] == 0
         puts "#{juice[:name]}：売切中"
       else @slot_money >= juice[:price]
-        puts "#{juice[:name]}：販売中"
+        puts "#{juice[:name]}：販売中、#{juice[:price]}円"
       end
     end
   end
@@ -19,8 +21,8 @@ module SalesManager
   end
 
   def purchase
-    puts '何を購入しますか？'
-    puts "0：coke\n1：レッドブル\n2：水"
+    # puts '何を購入しますか？'
+    # puts "0：coke\n1：レッドブル\n2：水"
     product_number = gets.to_i
     return "0 〜 2の数字を入力してください" unless [0, 1, 2].include?(product_number)
     selected_juice = @juice_lists[product_number]
@@ -40,5 +42,5 @@ module SalesManager
     puts @slot_money
     @slot_money = 0
   end
-  
+
 end
