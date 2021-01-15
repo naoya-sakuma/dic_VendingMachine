@@ -9,7 +9,7 @@
 # vm.slot_money (1000)
 # vm.return_money
 # vm.show_stock
-# vm.purchace
+# vm.purchase
 # vm.check_sales
 # vm.add_stocks
 # vm.buyable_juice_list
@@ -18,6 +18,9 @@ require './managers_as_modules/money_manager.rb'
 require './managers_as_modules/stocks_manager.rb'
 
 class VendingMachine
+  include MoneyManager
+  include StocksManager
+  
   MONEY = [10, 50, 100, 500, 1000].freeze
   def initialize
     @slot_money = 0
@@ -39,7 +42,7 @@ class VendingMachine
       selected_juice[:stocks] -= 1
       @slot_money = @slot_money - selected_juice[:price]
       @sales = @sales + selected_juice[:price]
-      puts "#{selected_juice[:name]}です。\n残金は#{current_slot_money}円です"
+      puts "#{selected_juice[:name]}です。\n残金は#{current_slot_money}円です。"
     elsif @slot_money < selected_juice[:price]
       puts 'お金が足りません'
     else
