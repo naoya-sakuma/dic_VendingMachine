@@ -21,10 +21,11 @@ class VendingMachine
   MONEY = [10, 50, 100, 500, 1000].freeze
   def initialize
     @slot_money = 0
-    @coke = {name: 'コーラ', price: 120, stocks: 5}
-    @redbull = {name: 'レッドブル', price: 200, stocks: 5}
-    @water = {name: '水', price: 100, stocks: 5}
-    @sales = 1000
+    @sales = 0
+    @coke = {product_id: 1, name: 'コーラ', price: 120, stocks: 5}
+    @redbull = {product_id: 2, name: 'レッドブル', price: 200, stocks: 5}
+    @water = {product_id: 3, name: '水', price: 100, stocks: 5}
+    @juice_lists = [@coke, @redbull, @water]
   end
 
   def current_slot_money
