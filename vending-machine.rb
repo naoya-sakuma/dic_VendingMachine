@@ -71,6 +71,16 @@ class VendingMachine
     @sales
   end
 
+  def buyable_juice_list
+    @juice_lists.each do |juice|
+      if juice[:stocks] == 0
+        puts "#{juice[:name]}：売切中"
+      else @slot_money >= juice[:price]
+        puts "#{juice[:name]}：販売中"
+      end
+    end
+  end
+
   def add_stocks
     puts 'どのジュースを補充しますか？'
     puts '1：コーラ'
@@ -86,24 +96,5 @@ class VendingMachine
       else
         puts '何も補充していません'
       end
-  end
-
-  def buyable_juice_list
-    juice_lists = [@coke, @redbull, @water]
-    @juice_stocks_sum = 0
-    juice_lists.each do |list|
-      if @slot_money >= list[:price] && list[:stocks] >= 1
-        @juice_stocks_sum = @juice_stocks_sum + list[:stocks]
-      end
-    end
-    if @juice_stocks_sum == 0
-      puts "買えるものがありません"
-    else
-      juice_lists.each do |list|
-        if @slot_money >= list[:price] && list[:stocks] >= 1
-          puts list[:name]
-        end
-      end
-    end
   end
 end
