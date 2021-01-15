@@ -13,6 +13,8 @@
 # vm.check_sales
 # vm.add_stocks
 # vm.buyable_juice_list
+require './managers_as_modules/money_manager.rb'
+require './managers_as_modules/stocks_manager.rb'
 
 class VendingMachine
   MONEY = [10, 50, 100, 500, 1000].freeze
