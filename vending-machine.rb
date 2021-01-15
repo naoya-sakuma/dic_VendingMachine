@@ -28,6 +28,25 @@ class VendingMachine
     @juice_lists = [@coke, @redbull, @water]
   end
 
+  def purchase
+    puts '何を購入しますか？'
+    puts "0：coke\n1：レッドブル\n2：水"
+    input_number = gets.to_i
+    return "0 〜 2の数字を入力してください" unless [0, 1, 2].include?(input_number)
+
+    selected_juice = @juice_lists[input_number]
+    if @slot_money >= selected_juice[:price] && selected_juice[:stocks] >= 1
+      selected_juice[:stocks] -= 1
+      @slot_money = @slot_money - selected_juice[:price]
+      @sales = @sales + selected_juice[:price]
+      puts "#{selected_juice[:name]}です。\n残金は#{current_slot_money}円です"
+    elsif @slot_money < selected_juice[:price]
+      puts 'お金が足りません'
+    else
+      puts "#{selected_juice[:name]}は売切中です。"
+    end
+  end
+
   def current_slot_money
     @slot_money
   end
@@ -46,50 +65,6 @@ class VendingMachine
     p "コーラは#{@coke[:stocks]}本です"
     p "レッドブルは#{@redbull[:stocks]}本です"
     p "水は#{@water[:stocks]}本です"
-  end
-
-  def purchase
-    puts '購入しますか？'
-    puts '1：コーラを購入する'
-    puts '2：レッドブルを購入する'
-    puts '3：水を購入する'
-      users_action = gets.to_i
-        if users_action == 1
-          if @slot_money >= @coke[:price] && @coke[:stocks] > 1
-            @coke[:stocks] -= 1
-            @slot_money = @slot_money - @coke[:price]
-            @sales = @sales + @coke[:price]
-            puts 'コーラです'
-            return_money
-          else
-            puts '購入できません'
-            return_money
-          end
-        elsif users_action == 2
-          if @slot_money >= @redbull[:price] && @redbull[:stocks] > 1
-            @redbull[:stocks] -= 1
-            @slot_money = @slot_money - @redbull[:price]
-            @sales = @sales + @redbull[:price]
-            puts 'レッドブルです'
-            return_money
-          else
-            puts '購入できません'
-            return_money
-          end
-        elsif users_action == 3
-          if @slot_money >= @water[:price] && @water[:stocks] > 1
-            @water[:stocks] -= 1
-            @slot_money = @slot_money - @water[:price]
-            @sales = @sales + @water[:price]
-            puts '水です'
-            return_money
-          else
-            puts '購入できません'
-            return_money
-          end
-        else
-          puts "無効な入力です"
-        end
   end
 
   def check_sales
