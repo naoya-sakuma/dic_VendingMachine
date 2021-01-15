@@ -2,6 +2,8 @@
 # work7ディレクトリにて、irb
 # require './vending-machine.rb'
 # load './vending-machine.rb'
+# load './managers_as_modules/money_manager.rb'
+# load './managers_as_modules/stocks_manager.rb'
 # vm = VendingMachine.new
 
 # メソッド
@@ -20,7 +22,7 @@ require './managers_as_modules/stocks_manager.rb'
 class VendingMachine
   include MoneyManager
   include StocksManager
-  
+
   MONEY = [10, 50, 100, 500, 1000].freeze
   def initialize
     @slot_money = 0
@@ -36,7 +38,6 @@ class VendingMachine
     puts "0：coke\n1：レッドブル\n2：水"
     input_number = gets.to_i
     return "0 〜 2の数字を入力してください" unless [0, 1, 2].include?(input_number)
-
     selected_juice = @juice_lists[input_number]
     if @slot_money >= selected_juice[:price] && selected_juice[:stocks] >= 1
       selected_juice[:stocks] -= 1
