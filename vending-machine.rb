@@ -18,6 +18,7 @@
 require 'byebug'
 require './managers_as_modules/money_manager.rb'
 require './managers_as_modules/stocks_manager.rb'
+require './managers_as_modules/sales_manager.rb'
 
 class VendingMachine
   include MoneyManager
@@ -27,51 +28,10 @@ class VendingMachine
   def initialize
     @slot_money = 0
     @sales = 0
-    @coke = {product_id: 1, name: 'コーラ', price: 120, stocks: 5}
-    @redbull = {product_id: 2, name: 'レッドブル', price: 200, stocks: 5}
-    @water = {product_id: 3, name: '水', price: 100, stocks: 5}
+    @coke = {name: 'コーラ', price: 120, stocks: 5}
+    @redbull = {name: 'レッドブル', price: 200, stocks: 5}
+    @water = {name: '水', price: 100, stocks: 5}
     @juice_lists = [@coke, @redbull, @water]
   end
 
-  def purchase
-    puts '何を購入しますか？'
-    puts "0：coke\n1：レッドブル\n2：水"
-    input_number = gets.to_i
-    return "0 〜 2の数字を入力してください" unless [0, 1, 2].include?(input_number)
-    selected_juice = @juice_lists[input_number]
-    if @slot_money >= selected_juice[:price] && selected_juice[:stocks] >= 1
-      selected_juice[:stocks] -= 1
-      @slot_money = @slot_money - selected_juice[:price]
-      @sales = @sales + selected_juice[:price]
-      puts "#{selected_juice[:name]}です。\n残金は#{current_slot_money}円です。"
-    elsif @slot_money < selected_juice[:price]
-      puts 'お金が足りません'
-    else
-      puts "#{selected_juice[:name]}は売切中です。"
-    end
-  end
-
-  def current_slot_money
-    @slot_money
-  end
-
-  def slot_money(money)
-    return false unless MONEY.include?(money)
-    @slot_money += money
-  end
-
-  def return_money
-    puts @slot_money
-    @slot_money = 0
-  end
-
-  def buyable_juice_list
-    @juice_lists.each do |juice|
-      if juice[:stocks] == 0
-        puts "#{juice[:name]}：売切中"
-      else @slot_money >= juice[:price]
-        puts "#{juice[:name]}：販売中"
-      end
-    end
-  end
 end
