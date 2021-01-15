@@ -1,5 +1,4 @@
 class MoneyManager
-  
   def check_sales
     @sales
   end
