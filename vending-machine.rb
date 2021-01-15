@@ -13,6 +13,7 @@
 # vm.check_sales
 # vm.add_stocks
 # vm.buyable_juice_list
+require 'byebug'
 require './managers_as_modules/money_manager.rb'
 require './managers_as_modules/stocks_manager.rb'
 
