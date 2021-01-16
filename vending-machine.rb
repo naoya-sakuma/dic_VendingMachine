@@ -26,7 +26,6 @@ class VendingMachine
   include StocksManager
   include SalesManager
 
-  MONEY = [10, 50, 100, 500, 1000].freeze
   def initialize
     @slot_money = 0
     @sales = 0
@@ -38,31 +37,28 @@ class VendingMachine
 
   def turn_on
     while true
-      buyable_juice_list
       puts "現在の投入金額：#{current_slot_money}円"
-      puts '何をしますか？'
-      puts "0：cokeを買う\n1：レッドブルを買う\n2：水を買う\n3：お金をいれる"
+      buyable_juice_list
+      puts "0：コーラを買う\n1：レッドブルを買う\n2：水を買う\n3：お金をいれる\n4：お金を取り出す"
       user_action = gets.to_i
       if [0, 1, 2].include?(user_action)
         purchase(user_action)
       elsif user_action == 3
         slot_money
       elsif user_action == 4
+        return_money
+      elsif user_action == 5
         puts '管理モードです。'
-        puts '何をしますか？'
         puts "0：在庫を確認\n1：在庫を追加\n2：売上金を確認\n3：売上金の取出\n4：電源を切る"
-        #@admin_functions = [check_stocks, add_stocks, check_sales, take_out_sales]
         admin_action = gets.to_i
-        if admin_action == 0
-          check_stocks
-        elsif admin_action == 1
-          add_stocks
-        elsif admin_action == 2
-          check_sales
-        elsif admin_action == 3
-          take_out_sales
-        elsif admin_action == 4
-          break
+        case admin_action
+        when 0 then check_stocks
+        when 1 then add_stocks
+        when 2 then check_sales
+        when 3 then take_out_sales
+        when 4 then break
+        else
+          puts '0〜4の数字を入力してください。'
         end
       end
     end

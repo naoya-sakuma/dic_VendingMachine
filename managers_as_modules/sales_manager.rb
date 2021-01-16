@@ -5,8 +5,11 @@ module SalesManager
     @juice_lists.each do |juice|
       if juice[:stocks] == 0
         puts "#{juice[:name]}：売切中"
-      else @slot_money >= juice[:price]
-        puts "#{juice[:name]}：販売中、#{juice[:price]}円"
+      elsif @slot_money <= juice[:price]
+        lack_amount = juice[:price] - @slot_money
+        puts "#{juice[:name]}：#{juice[:price]}円：#{lack_amount}円足りません"
+      else
+        puts "#{juice[:name]}：#{juice[:price]}円：販売中"
       end
     end
   end
@@ -26,7 +29,6 @@ module SalesManager
 
   def purchase(user_action)
     product_number = user_action
-    return "0 〜 2の数字を入力してください" unless [0, 1, 2].include?(product_number)
     selected_juice = @juice_lists[product_number]
     if @slot_money >= selected_juice[:price] && selected_juice[:stocks] >= 1
       selected_juice[:stocks] -= 1
@@ -41,7 +43,7 @@ module SalesManager
   end
 
   def return_money
-    puts @slot_money
+    puts "#{@slot_money}円のお返しです。"
     @slot_money = 0
   end
 
