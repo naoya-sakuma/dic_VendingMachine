@@ -37,6 +37,7 @@ class VendingMachine
 
   def turn_on
     while true
+      puts '-------------------------------------'
       puts "現在の投入金額：#{current_slot_money}円"
       buyable_juice_list
       puts "0：コーラを買う\n1：レッドブルを買う\n2：水を買う\n3：お金をいれる\n4：お金を取り出す"
