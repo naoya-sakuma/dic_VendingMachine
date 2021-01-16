@@ -44,17 +44,14 @@ class VendingMachine
       puts "0：cokeを買う\n1：レッドブルを買う\n2：水を買う\n3：お金をいれる"
       user_action = gets.to_i
       if [0, 1, 2].include?(user_action)
-        purchase
+        purchase(user_action)
       elsif user_action == 3
-        puts 'いくら入れますか？'
-        puts "#{MONEY}"
-        money = gets.to_i
-        slot_money(money)
-        puts "現在の投入金額：#{current_slot_money}円"
-      elsif user_action ==4
+        slot_money
+      elsif user_action == 4
         puts '管理モードです。'
         puts '何をしますか？'
-        puts "0：在庫を確認\n1：在庫を追加\n2：売上金を確認\n3：売上金の取出"
+        puts "0：在庫を確認\n1：在庫を追加\n2：売上金を確認\n3：売上金の取出\n4：電源を切る"
+        #@admin_functions = [check_stocks, add_stocks, check_sales, take_out_sales]
         admin_action = gets.to_i
         if admin_action == 0
           check_stocks
@@ -64,10 +61,9 @@ class VendingMachine
           check_sales
         elsif admin_action == 3
           take_out_sales
+        elsif admin_action == 4
+          break
         end
-      else
-        puts '0〜3の数字を入力してください'
-        break
       end
     end
   end
