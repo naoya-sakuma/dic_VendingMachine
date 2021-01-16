@@ -41,13 +41,11 @@ class VendingMachine
       buyable_juice_list
       puts "0：コーラを買う\n1：レッドブルを買う\n2：水を買う\n3：お金をいれる\n4：お金を取り出す"
       user_action = gets.to_i
-      if [0, 1, 2].include?(user_action)
-        purchase(user_action)
-      elsif user_action == 3
-        slot_money
-      elsif user_action == 4
-        return_money
-      elsif user_action == 5
+      case user_action
+      when 0..2 then purchase(user_action)
+      when 3 then slot_money
+      when 4 then return_money
+      when 5
         puts '管理モードです。'
         puts "0：在庫を確認\n1：在庫を追加\n2：売上金を確認\n3：売上金の取出\n4：電源を切る"
         admin_action = gets.to_i
@@ -60,6 +58,8 @@ class VendingMachine
         else
           puts '0〜4の数字を入力してください。'
         end
+      else
+        puts '0〜4の数字を入力してください。'
       end
     end
   end
