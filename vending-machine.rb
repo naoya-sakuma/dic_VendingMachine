@@ -1,21 +1,13 @@
 #　初期設定
-# work7ディレクトリにて、irb
+# vending_machineディレクトリにて、irb
 # require './vending-machine.rb'
+# vm = VendingMachine.new
+
 # load './vending-machine.rb'
 # load './managers_as_modules/money_manager.rb'
 # load './managers_as_modules/stocks_manager.rb'
 # load './managers_as_modules/sales_manager.rb'
-# vm = VendingMachine.new
 
-# メソッド
-# vm.current_slot_money
-# vm.slot_money (1000)
-# vm.return_money
-# vm.show_stock
-# vm.purchase
-# vm.check_sales
-# vm.add_stocks
-# vm.buyable_juice_list
 require 'byebug'
 require './managers_as_modules/money_manager.rb'
 require './managers_as_modules/stocks_manager.rb'
@@ -37,6 +29,21 @@ class VendingMachine
 
   def turn_on
     while true
+      puts 'モードを選択してください'
+      puts "0：販売モード\n1：管理モード\n2：電源を切る"
+      mode = gets.to_i
+      case mode
+      when 0 then selling_mode
+      when 1 then management_mode
+      when 2 then break
+      else
+        puts '0〜2の数字を入力してください。'
+      end
+    end
+  end
+
+  def selling_mode
+    while true
       puts '-------------------------------------'
       puts "現在の投入金額：#{current_slot_money}円"
       buyable_juice_list
@@ -46,19 +53,25 @@ class VendingMachine
       when 0..2 then purchase(user_action)
       when 3 then slot_money
       when 4 then return_money
-      when 5
-        puts '管理モードです。'
-        puts "0：在庫を確認\n1：在庫を追加\n2：売上金を確認\n3：売上金の取出\n4：電源を切る"
-        admin_action = gets.to_i
-        case admin_action
-        when 0 then check_stocks
-        when 1 then add_stocks
-        when 2 then check_sales
-        when 3 then take_out_sales
-        when 4 then break
-        else
-          puts '0〜4の数字を入力してください。'
-        end
+      when 5 then break
+      else
+        puts '0〜4の数字を入力してください。'
+      end
+    end
+  end
+
+  def management_mode
+    while true
+      puts '-------------------------------------'
+      puts '管理モードです。'
+      puts "0：在庫を確認\n1：在庫を追加\n2：売上金を確認\n3：売上金の取出\n4：管理モードを終了する"
+      admin_action = gets.to_i
+      case admin_action
+      when 0 then check_stocks
+      when 1 then add_stocks
+      when 2 then check_sales
+      when 3 then take_out_sales
+      when 4 then break
       else
         puts '0〜4の数字を入力してください。'
       end

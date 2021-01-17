@@ -18,9 +18,12 @@ module SalesManager
     puts 'いくら入れますか？'
     puts "#{MONEY}"
     money = gets.to_i
-    return "取り扱いできません。#{money}円" unless MONEY.include?(money)
-    @slot_money += money
-    puts "#{money}円投入されました"
+    if MONEY.include?(money)
+      @slot_money += money
+      puts "#{money}円投入されました"
+    else
+      puts "取り扱いできません。#{money}円のお返しです。"
+    end
   end
 
   def current_slot_money
