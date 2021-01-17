@@ -1,25 +1,20 @@
 class StocksManager
-  
   def add_stocks
     puts 'どのジュースを補充しますか？'
-    puts '1：コーラ'
-    puts '2：レッドブル'
-    puts '3：水'
-    select_juice_to_stock = gets.to_i
-      if select_juice_to_stock  == 1
-        @coke[:stocks] += 5
-      elsif select_juice_to_stock  == 2
-        @redbull[:stocks] += 5
-      elsif select_juice_to_stock  == 3
-        @water[:stocks] += 5
-      else
-        puts '何も補充していません'
-      end
+    puts "0：コーラ\n1：レッドブル\n2：水"
+    product_number = gets.to_i
+    if [0, 1, 2].include?(product_number)
+      juice_to_stock = @juice_lists[product_number]
+      juice_to_stock[:stocks] += 5
+      puts "#{juice_to_stock[:name]}を5本追加しました。"
+    else
+      puts "0〜2の数字を入力してください。"
+    end
   end
 
-  def show_stock
-    p "コーラは#{@coke[:stocks]}本です"
-    p "レッドブルは#{@redbull[:stocks]}本です"
-    p "水は#{@water[:stocks]}本です"
+  def check_stocks
+    @juice_lists.each do |juice|
+      p "#{juice[:name]}の在庫：#{juice[:stocks]}本"
+    end
   end
 end
