@@ -30,13 +30,13 @@ class VendingMachine
   def turn_on
     while true
       puts 'モードを選択してください'
-      puts "0：販売モード\n1：管理モード\n2：電源を切る"
+      puts '0：販売モード\n1：管理モード\n2：電源を切る'
       mode = gets.to_i
       case mode
       when 0 then selling_mode
       when 1 then management_mode
       when 2 then break
-      else puts '0〜2の数字を入力してください。'
+      else puts '0か1を入力してください。'
       end
     end
   end
@@ -46,7 +46,7 @@ class VendingMachine
       puts '-------------------------------------'
       puts "現在の投入金額：#{current_slot_money}円"
       buyable_juice_list
-      puts "0：コーラを買う\n1：レッドブルを買う\n2：水を買う\n3：お金をいれる\n4：お金を取り出す"
+      puts '0：コーラを買う\n1：レッドブルを買う\n2：水を買う\n3：お金をいれる\n4：お金を取り出す'
       user_action = gets.to_i
       case user_action
       when 0..2 then purchase(user_action)
@@ -62,7 +62,7 @@ class VendingMachine
     while true
       puts '-------------------------------------'
       puts '管理モードです。'
-      puts "0：在庫を確認\n1：在庫を追加\n2：売上金を確認\n3：売上金の取出\n4：管理モードを終了する"
+      puts '0：在庫を確認\n1：在庫を追加\n2：売上金を確認\n3：売上金の取出\n4：管理モードを終了する'
       admin_action = gets.to_i
       case admin_action
       when 0 then check_stocks
