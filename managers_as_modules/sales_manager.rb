@@ -20,7 +20,7 @@ module SalesManager
     money = gets.to_i
     if MONEY.include?(money)
       @slot_money += money
-      puts "#{money}円投入されました"
+      puts "#{money}円投入されました。"
     else
       puts "取り扱いできません。#{money}円のお返しです。"
     end
@@ -39,7 +39,7 @@ module SalesManager
       @sales = @sales + selected_juice[:price]
       puts "#{selected_juice[:name]}です。\n残金は#{current_slot_money}円です。"
     elsif @slot_money < selected_juice[:price]
-      puts 'お金が足りません'
+      puts 'お金が足りません。'
     else
       puts "#{selected_juice[:name]}は売切中です。"
     end

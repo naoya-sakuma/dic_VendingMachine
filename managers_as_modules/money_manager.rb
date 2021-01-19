@@ -4,7 +4,11 @@ module MoneyManager
   end
 
   def take_out_sales
-    puts "#{@sales}円取り出しました。"
-    @sales = 0
+    if @sales == 0
+      puts "売上は#{@sales}円です。"
+    else
+      puts "売上#{@sales}円を取り出しました。"
+      @sales = 0
+    end
   end
 end
