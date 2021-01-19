@@ -36,8 +36,7 @@ class VendingMachine
       when 0 then selling_mode
       when 1 then management_mode
       when 2 then break
-      else
-        puts '0〜2の数字を入力してください。'
+      else puts '0〜2の数字を入力してください。'
       end
     end
   end
@@ -54,8 +53,7 @@ class VendingMachine
       when 3 then slot_money
       when 4 then return_money
       when 5 then break
-      else
-        puts '0〜4の数字を入力してください。'
+      else puts '0〜4の数字を入力してください。'
       end
     end
   end
@@ -72,8 +70,7 @@ class VendingMachine
       when 2 then check_sales
       when 3 then take_out_sales
       when 4 then break
-      else
-        puts '0〜4の数字を入力してください。'
+      else puts '0〜4の数字を入力してください。'
       end
     end
   end
