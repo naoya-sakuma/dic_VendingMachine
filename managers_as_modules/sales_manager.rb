@@ -4,12 +4,12 @@ module SalesManager
   def buyable_juice_list
     @juice_lists.each do |juice|
       if juice[:stocks] == 0
-        puts "#{juice[:name]}：売切中"
+        puts "[#{juice[:name]}：#{juice[:price]}円]\s売切中"
       elsif @slot_money <= juice[:price]
         lack_amount = juice[:price] - @slot_money
-        puts "#{juice[:name]}：#{juice[:price]}円：#{lack_amount}円足りません"
+        puts "[#{juice[:name]}：#{juice[:price]}円]\s#{lack_amount}円足りません"
       else
-        puts "#{juice[:name]}：#{juice[:price]}円：販売中"
+        puts "[#{juice[:name]}：#{juice[:price]}円]\s販売中"
       end
     end
   end
