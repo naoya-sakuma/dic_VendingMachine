@@ -1,4 +1,10 @@
 module StocksManager
+  def check_stocks
+    @juice_lists.each do |juice|
+      p "#{juice[:name]}の在庫：#{juice[:stocks]}本"
+    end
+  end
+
   def add_stocks
     puts 'どのジュースを補充しますか？'
     puts "0：コーラ\n1：レッドブル\n2：水"
@@ -9,12 +15,6 @@ module StocksManager
       puts "#{juice_to_stock[:name]}を5本追加しました。"
     else
       puts "0〜2の数字を入力してください。"
-    end
-  end
-
-  def check_stocks
-    @juice_lists.each do |juice|
-      p "#{juice[:name]}の在庫：#{juice[:stocks]}本"
     end
   end
 end
