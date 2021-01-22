@@ -1,9 +1,9 @@
 #　初期設定
 # vending_machineディレクトリにて、irb
-# require './vending-machine_functions.rb'
+# require './vending-machine.rb'
 # vm = VendingMachine.new
 
-# load './vending-machine_functions.rb'
+# load './vending-machine.rb'
 # load './functions_as_modules/management_functions.rb'
 # load './functions_as_modules/selling_functions.rb'
 
@@ -47,8 +47,7 @@ class VendingMachine
       user_action = gets.to_i
       case user_action
       when 0
-        puts 'どのジュースを購入しますか？'
-        puts "0：コーラ\n1：レッドブル\n2：水"
+        message_to_sell
         product_number = gets.to_i
         purchase(product_number)
       when 1 then slot_money
@@ -68,8 +67,7 @@ class VendingMachine
       case admin_action
       when 0 then check_stocks
       when 1
-        puts 'どのジュースを補充しますか？'
-        puts "0：コーラ\n1：レッドブル\n2：水"
+        message_to_stock
         product_number = gets.to_i
         add_stocks(product_number)
       when 2 then check_sales
@@ -78,5 +76,15 @@ class VendingMachine
       else puts '0〜4の数字を入力してください。'
       end
     end
+  end
+
+  def message_to_sell
+    puts 'どのジュースを購入しますか？？'
+    puts "0：コーラ\n1：レッドブル\n2：水"
+  end
+
+  def message_to_stock
+    puts 'どのジュースを補充しますか？'
+    puts "0：コーラ\n1：レッドブル\n2：水"
   end
 end
