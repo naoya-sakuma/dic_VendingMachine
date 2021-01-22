@@ -6,7 +6,7 @@ module ManagementFunctions
   end
 
   def add_stocks(product_number)
-    if [0, 1, 2].include?(product_number)
+    if @products_list.count - 1 >= product_number
       product_to_stock = @products_list[product_number]
       product_to_stock[:stocks] += 5
       puts "#{product_to_stock[:name]}を5本追加しました。"
