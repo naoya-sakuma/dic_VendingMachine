@@ -1,4 +1,4 @@
-module ManagementFunctions
+module StockManagementFunctions
   def check_stocks
     @products_list.each do |product|
       p "#{product[:name]}の在庫：#{product[:stocks]}本"
@@ -14,7 +14,10 @@ module ManagementFunctions
       puts "0〜2の数字を入力してください。"
     end
   end
+end
 
+
+module SalesManagementFunctions
   def check_sales
     puts "現在の売上は#{@sales}円です。"
   end
