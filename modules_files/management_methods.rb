@@ -11,7 +11,7 @@ module StockManagementFunctions
       product_to_stock[:stocks] += 5
       puts "#{product_to_stock[:name]}を5本追加しました。"
     else
-      puts "0〜2の数字を入力してください。"
+      puts "無効な入力です。"
     end
   end
 end

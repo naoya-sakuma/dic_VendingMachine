@@ -19,16 +19,20 @@ module SellingFunctions
   end
 
   def purchase(product_number)
-    selected_product = @products_list[product_number]
-    if @slot_money >= selected_product[:price] && selected_product[:stocks] >= 1
-      selected_product[:stocks] -= 1
-      @slot_money = @slot_money - selected_product[:price]
-      @sales = @sales + selected_product[:price]
-      puts "#{selected_product[:name]}です。\n残金は#{current_slot_money}円です。"
-    elsif @slot_money < selected_product[:price]
-      puts 'お金が足りません。'
+    if @products_list.count - 1 >= product_number
+      selected_product = @products_list[product_number]
+      if @slot_money >= selected_product[:price] && selected_product[:stocks] >= 1
+        selected_product[:stocks] -= 1
+        @slot_money = @slot_money - selected_product[:price]
+        @sales = @sales + selected_product[:price]
+        puts "#{selected_product[:name]}です。\n残金は#{current_slot_money}円です。"
+      elsif @slot_money < selected_product[:price]
+        puts 'お金が足りません。'
+      else
+        puts "#{selected_product[:name]}は売切中です。"
+      end
     else
-      puts "#{selected_product[:name]}は売切中です。"
+      puts "無効な入力です。"
     end
   end
 

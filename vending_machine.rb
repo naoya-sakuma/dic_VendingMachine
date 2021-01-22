@@ -25,7 +25,7 @@ class VendingMachine
       when 0 then selling_mode
       when 1 then management_mode
       when 2 then break
-      else puts '0か1を入力してください。'
+      else puts '無効な入力です。'
       end
     end
   end
@@ -45,7 +45,7 @@ class VendingMachine
       when 1 then slot_money
       when 2 then return_money
       when 3 then break
-      else puts '0〜4の数字を入力してください。'
+      else puts '無効な入力です。'
       end
     end
   end
@@ -65,7 +65,7 @@ class VendingMachine
       when 2 then check_sales
       when 3 then take_out_sales
       when 4 then break
-      else puts '0〜4の数字を入力してください。'
+      else puts '無効な入力です。'
       end
     end
   end
