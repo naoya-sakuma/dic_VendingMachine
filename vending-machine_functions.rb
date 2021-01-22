@@ -21,7 +21,7 @@ class VendingMachine
     @coke = {name: 'コーラ', price: 120, stocks: 5}
     @redbull = {name: 'レッドブル', price: 200, stocks: 5}
     @water = {name: '水', price: 100, stocks: 5}
-    @juice_lists = [@coke, @redbull, @water]
+    @products_list = [@coke, @redbull, @water]
   end
 
   def turn_on
@@ -42,14 +42,18 @@ class VendingMachine
     while true
       puts '-------------------------------------'
       puts "現在の投入金額：#{current_slot_money}円"
-      buyable_juice_list
-      puts "0：コーラを買う\n1：レッドブルを買う\n2：水を買う\n3：お金をいれる\n4：お金を取り出す"
+      buyable_products_list
+      puts "0：飲み物を買う\n1：お金をいれる\n2：お金を取り出す"
       user_action = gets.to_i
       case user_action
-      when 0..2 then purchase(user_action)
-      when 3 then slot_money
-      when 4 then return_money
-      when 5 then break
+      when 0
+        puts 'どのジュースを購入しますか？'
+        puts "0：コーラ\n1：レッドブル\n2：水"
+        product_number = gets.to_i
+        purchase(product_number)
+      when 1 then slot_money
+      when 2 then return_money
+      when 3 then break
       else puts '0〜4の数字を入力してください。'
       end
     end
@@ -63,7 +67,11 @@ class VendingMachine
       admin_action = gets.to_i
       case admin_action
       when 0 then check_stocks
-      when 1 then add_stocks
+      when 1
+        puts 'どのジュースを補充しますか？'
+        puts "0：コーラ\n1：レッドブル\n2：水"
+        product_number = gets.to_i
+        add_stocks(product_number)
       when 2 then check_sales
       when 3 then take_out_sales
       when 4 then break

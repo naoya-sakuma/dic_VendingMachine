@@ -5,31 +5,30 @@ module SellingFunctions
     @slot_money
   end
 
-  def buyable_juice_list
-    @juice_lists.each do |juice|
-      if juice[:stocks] == 0
-        puts "[#{juice[:name]}：#{juice[:price]}円]\s売切中"
-      elsif @slot_money <= juice[:price]
-        lack_amount = juice[:price] - @slot_money
-        puts "[#{juice[:name]}：#{juice[:price]}円]\s#{lack_amount}円不足"
+  def buyable_products_list
+    @products_list.each do |product|
+      if product[:stocks] == 0
+        puts "[#{product[:name]}：#{product[:price]}円]\s売切中"
+      elsif @slot_money <= product[:price]
+        lack_amount = product[:price] - @slot_money
+        puts "[#{product[:name]}：#{product[:price]}円]\s#{lack_amount}円不足"
       else
-        puts "[#{juice[:name]}：#{juice[:price]}円]\s販売中"
+        puts "[#{product[:name]}：#{product[:price]}円]\s販売中"
       end
     end
   end
 
-  def purchase(user_action)
-    product_number = user_action
-    selected_juice = @juice_lists[product_number]
-    if @slot_money >= selected_juice[:price] && selected_juice[:stocks] >= 1
-      selected_juice[:stocks] -= 1
-      @slot_money = @slot_money - selected_juice[:price]
-      @sales = @sales + selected_juice[:price]
-      puts "#{selected_juice[:name]}です。\n残金は#{current_slot_money}円です。"
-    elsif @slot_money < selected_juice[:price]
+  def purchase(product_number)
+    selected_product = @products_list[product_number]
+    if @slot_money >= selected_product[:price] && selected_product[:stocks] >= 1
+      selected_product[:stocks] -= 1
+      @slot_money = @slot_money - selected_product[:price]
+      @sales = @sales + selected_product[:price]
+      puts "#{selected_product[:name]}です。\n残金は#{current_slot_money}円です。"
+    elsif @slot_money < selected_product[:price]
       puts 'お金が足りません。'
     else
-      puts "#{selected_juice[:name]}は売切中です。"
+      puts "#{selected_product[:name]}は売切中です。"
     end
   end
 
