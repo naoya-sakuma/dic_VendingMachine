@@ -4,8 +4,8 @@
 # vm = VendingMachine.new
 
 # load './vending_machine.rb'
-# load './functions_as_modules/management_functions.rb'
-# load './functions_as_modules/selling_functions.rb'
+# load './modules_files/management_methods.rb'
+# load './modules_files/selling_methods.rb'
 
 require './modules_files/management_methods.rb'
 require './modules_files/selling_methods.rb'
@@ -39,9 +39,9 @@ class VendingMachine
       user_action = gets.to_i
       case user_action
       when 0
-        message_to_sell
+        messages_to_sell_product
         product_number = gets.to_i
-        purchase(product_number)
+        purchase_product(product_number)
       when 1 then slot_money
       when 2 then return_money
       when 3 then break
@@ -59,7 +59,7 @@ class VendingMachine
       case admin_action
       when 0 then check_stocks
       when 1
-        message_to_stock
+        messages_to_stock_product
         product_number = gets.to_i
         add_stocks(product_number)
       when 2 then check_sales

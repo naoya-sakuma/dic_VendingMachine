@@ -4,8 +4,8 @@
 # vm = DrinkVendingMachine.new
 
 # load './drink_vending_machine.rb'
-# load './functions_as_modules/management_functions.rb'
-# load './functions_as_modules/selling_functions.rb'
+# load './modules_files/management_functions.rb'
+# load './modules_files/selling_functions.rb'
 
 require './vending_machine.rb'
 
@@ -28,13 +28,13 @@ class DrinkVendingMachine < VendingMachine
     # @products_list = [@strawberry, @grape, @melon, @orange]
   end
 
-  def message_to_sell
+  def messages_to_sell_product
     puts 'どの商品を購入しますか？'
     puts "0：コーラ\n1：レッドブル\n2：水"
     # puts "0：イチゴ\n1：ぶどう\n2：メロン\n3：オレンジ"
   end
 
-  def message_to_stock
+  def messages_to_stock_product
     puts 'どの商品を補充しますか？'
     puts "0：コーラ\n1：レッドブル\n2：水"
     # puts "0：イチゴ\n1：ぶどう\n2：メロン\n3：オレンジ"

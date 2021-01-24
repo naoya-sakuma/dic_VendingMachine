@@ -18,7 +18,7 @@ module SellingFunctions
     end
   end
 
-  def purchase(product_number)
+  def purchase_product(product_number)
     if @products_list.count - 1 >= product_number
       selected_product = @products_list[product_number]
       if @slot_money >= selected_product[:price] && selected_product[:stocks] >= 1
