@@ -1,0 +1,19 @@
+初期設定
+vending_machineディレクトリにて、irb
+
+DrinkVendingMachineの場合
+require './drink_vending_machine.rb'
+dvm = DrinkVendingMachine.new
+
+load './drink_vending_machine.rb'
+load './vending_machine_methods/management_functions.rb'
+load './vending_machine_methods/selling_functions.rb'
+
+
+FruitsVendingMachineの場合
+require './fruits_vending_machine.rb'
+vm = FruitsVendingMachine.new
+
+load './fruits_vending_machine.rb'
+load './modules_files/management_functions.rb'
+load './modules_files/selling_functions.rb'exit
