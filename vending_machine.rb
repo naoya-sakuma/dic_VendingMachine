@@ -1,15 +1,5 @@
-#　初期設定
-# vending_machineディレクトリにて、irb
-# require './vending_machine.rb'
-# vm = VendingMachine.new
-
-# load './vending_machine.rb'
-# load './modules_files/management_methods.rb'
-# load './modules_files/selling_methods.rb'
-
-require './modules_files/management_methods.rb'
-require './modules_files/selling_methods.rb'
-
+require './vending_machine_methods/management_methods.rb'
+require './vending_machine_methods/selling_methods.rb'
 
 class VendingMachine
   include SellingFunctions

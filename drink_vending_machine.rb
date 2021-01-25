@@ -1,12 +1,3 @@
-# 初期設定
-# vending_machineディレクトリにて、irb
-# require './drink_vending_machine.rb'
-# vm = DrinkVendingMachine.new
-
-# load './drink_vending_machine.rb'
-# load './modules_files/management_functions.rb'
-# load './modules_files/selling_functions.rb'
-
 require './vending_machine.rb'
 
 class DrinkVendingMachine < VendingMachine
