@@ -10,8 +10,8 @@ module SellingFunctions
       if product[:stocks] == 0
         puts "[#{product[:name]}：#{product[:price]}円]\s売切中"
       elsif @slot_money <= product[:price]
-        lack_amount = product[:price] - @slot_money
-        puts "[#{product[:name]}：#{product[:price]}円]\s#{lack_amount}円不足"
+        insufficient_money = product[:price] - @slot_money
+        puts "[#{product[:name]}：#{product[:price]}円]\s#{insufficient_money}円不足"
       else
         puts "[#{product[:name]}：#{product[:price]}円]\s販売中"
       end
@@ -49,11 +49,11 @@ module SellingFunctions
   end
 
   def return_money
-    if @slot_money == 0
-      puts "お金が投入されていません。"
-    else
+    if @slot_money > 0
       puts "#{@slot_money}円お返しします。"
       @slot_money = 0
+    else
+      puts "お金が投入されていません。"
     end
   end
 end

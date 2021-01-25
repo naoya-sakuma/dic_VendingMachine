@@ -23,11 +23,11 @@ module SalesManagementFunctions
   end
 
   def take_out_sales
-    if @sales == 0
-      puts "売上は#{@sales}円です。"
-    else
+    if @sales > 0
       puts "売上#{@sales}円を取り出しました。"
       @sales = 0
+    else
+      puts "売上は#{@sales}円です。"
     end
   end
 end
