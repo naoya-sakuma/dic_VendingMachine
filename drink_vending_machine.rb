@@ -9,7 +9,6 @@ class DrinkVendingMachine < VendingMachine
     @redbull = {name: 'レッドブル', price: 200, stocks: 5}
     @water = {name: '水', price: 100, stocks: 5}
     @products_list = [@coke, @redbull, @water]
-
   end
 
   def messages_to_sell_product
